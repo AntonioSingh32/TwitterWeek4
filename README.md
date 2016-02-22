@@ -19,14 +19,10 @@ The following **optional** features are implemented:
 - [ ] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count.
 - [ ] User can pull to refresh.
 
-The following **additional** features are implemented:
-
-- [ ] List anything else that you can get done to improve the app functionality!
-
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. 
-2. 
+1. How to compose a new tweet and actually have it posted on your Twitter account.
+2. How to load profile timeline
 
 ## Video Walkthrough 
 
@@ -39,10 +35,11 @@ Here's a walkthrough of implemented user stories:
 Describe any challenges encountered while building the app.
 
 -Displaying information on the cells as a result of conversion between data and ints to string.
+-Attempted infinite loading but was unsuccessful.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2016] [Antonio Singh]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
