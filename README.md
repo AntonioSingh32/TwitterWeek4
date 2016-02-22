@@ -35,6 +35,7 @@ Here's a walkthrough of implemented user stories:
 Describe any challenges encountered while building the app.
 
 -Displaying information on the cells as a result of conversion between data and ints to string.
+
 -Attempted infinite loading but was unsuccessful.
 
 ## License
