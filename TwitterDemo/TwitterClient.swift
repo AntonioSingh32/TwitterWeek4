@@ -109,7 +109,51 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    
-    
+    func retweet(params: NSDictionary?, completion: (tweet: Tweet!, error: NSError?) -> ()) {
+        
+        POST("1.1/statuses/retweet/\(params!["id"] as! Int).json", parameters: nil, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            
+            let tweet = Tweet.tweetAsDictionary(response as! NSDictionary)
 
+            completion(tweet: tweet, error: nil)
+            
+            }) { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("ERROR: \(error)")
+                completion(tweet: nil, error: error)
+        }
+    }
+    
+    func favorite(params: NSDictionary?, completion: (tweet: Tweet?, error: NSError?) -> ())
+    {
+        
+        POST("1.1/favorites/create.json", parameters: nil, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            
+            let tweet = Tweet.tweetAsDictionary(response as! NSDictionary)
+            
+            //print("This is the retweetCount: \(tweet.retweetCount)")
+            //print("This is the favCount: \(tweet.favCount)")
+            
+            completion(tweet: tweet, error: nil)
+            
+            }) { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("ERROR: \(error)")
+                completion(tweet: nil, error: error)
+        }
+    }
+
+    func tweetWithCompletion(params: NSDictionary?, completion: (tweet: Tweet?, error: NSError?) -> ()) {
+        
+        POST("1.1/statuses/update.json?status=\(params!["status"] as! String)", parameters: params, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            
+            let tweet = Tweet.tweetAsDictionary(response as! NSDictionary)
+            
+            
+            completion(tweet: tweet, error: nil)
+            
+            }) { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("ERROR: \(error)")
+                completion(tweet: nil, error: error)
+        }
+    }
+    
 }

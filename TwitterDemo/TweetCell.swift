@@ -29,24 +29,16 @@ class TweetCell: UITableViewCell {
         
         tweet.addFavorite()
     }
-    @IBAction func unretweetButton(sender: AnyObject) {
-        
-        tweet.removeRetweet()
-    }
-    
-    @IBAction func unfavoriteButton(sender: AnyObject) {
-        
-        tweet.removeFavorite()
-    }
+
     var tweet: Tweet! {
         didSet {
             
         nameLabel.text = tweet.user!.name as? String
-        handleLabel.text = "@\(tweet.user!.screenname!)" as? String
+        handleLabel.text = "@\(tweet.user!.screenname!)"
         messageLabel.text = tweet.textbox as? String
         profileImage.setImageWithURL(tweet.user!.profileURL!)
-        retweetLabel.text = "\(tweet.retweetCount)" as? String
-        favoriteLabel.text = "\(tweet.favoritesCount)" as? String
+        retweetLabel.text = "\(tweet.retweetCount)"
+        favoriteLabel.text = "\(tweet.favoritesCount)"
         
         }
     }

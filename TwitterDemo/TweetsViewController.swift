@@ -21,7 +21,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         self.navigationItem.title = "TWITTER"
         
         if let navigationBar = navigationController?.navigationBar {
-            navigationBar.tintColor = UIColor(red: 0.0, green: 1.25, blue: 3.25, alpha: 0.8)
+            navigationBar.tintColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.8)
             
             let shadow = NSShadow()
             shadow.shadowColor = UIColor.grayColor().colorWithAlphaComponent(0.5)
@@ -29,7 +29,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             shadow.shadowBlurRadius = 4;
             navigationBar.titleTextAttributes = [
                 NSFontAttributeName : UIFont.boldSystemFontOfSize(22),
-                NSForegroundColorAttributeName : UIColor(red: 0.5, green: 0.20, blue: 0.25, alpha: 0.8),
+                NSForegroundColorAttributeName : UIColor(red: 0.0, green: 0.0, blue: 0.5, alpha: 0.8),
                 NSShadowAttributeName : shadow
             ]
         }
@@ -53,6 +53,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             
             for tweet in tweets {
                 print (tweet.textbox)
+                print (tweet.userid)
             }
             
             }, failure: { (error: NSError) -> () in
@@ -166,14 +167,28 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         TwitterClient.sharedInstance.logout()
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("prepare for segue called")
+        
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPathForCell(cell)
+        let tweet = tweets![indexPath!.row]
+        let detailViewController = segue.destinationViewController as! ExpandedViewController
+        detailViewController.tweet = tweet
+        
+        }
+        
+    
+    
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
-}
+

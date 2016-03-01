@@ -16,6 +16,8 @@ class Tweet: NSObject {
     var timestamp: NSDate?
     var retweetCount: Int=0
     var favoritesCount: Int=0
+    var userid: NSNumber?
+    var profuser: NSString?
 
     
     init(dictionary: NSDictionary) {
@@ -25,6 +27,9 @@ class Tweet: NSObject {
         textbox = dictionary ["text"] as? String
         retweetCount = (dictionary ["retweet_count"] as! Int) ?? 0
         favoritesCount = (dictionary ["favourites_count"] as? Int) ?? 0
+        
+        userid = dictionary ["id"] as! Int
+        profuser = dictionary["name"] as? String
         
         let timestampString = dictionary["created_at"] as? String
         
@@ -73,6 +78,15 @@ class Tweet: NSObject {
     func removeFavorite() {
         
         favoritesCount = favoritesCount-1
+    }
+    
+    class func tweetAsDictionary(dict: NSDictionary) -> Tweet {
+        
+        // print(dict)
+        
+        let tweet = Tweet(dictionary: dict)
+        
+        return tweet
     }
 
 }
